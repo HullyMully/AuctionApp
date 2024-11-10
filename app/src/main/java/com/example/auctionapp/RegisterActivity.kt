@@ -77,7 +77,7 @@ class RegisterActivity : AppCompatActivity() {
                                     }
                                 }
                         } else {
-                            Toast.makeText(this, "Please fill in both fields.", Toast.LENGTH_SHORT)
+                            Toast.makeText(this, "The email address is already in use.", Toast.LENGTH_SHORT)
                                 .show()
                         }
                     }

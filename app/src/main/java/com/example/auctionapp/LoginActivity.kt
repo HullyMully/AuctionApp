@@ -22,6 +22,25 @@ class LoginActivity : AppCompatActivity() {
         val passwordField: EditText = findViewById(R.id.passwordField)
         val loginButton: Button = findViewById(R.id.loginButton)
         val registerButton: Button = findViewById(R.id.goToRegisterButton)
+        val forgotPasswordButton: Button = findViewById(R.id.forgotPasswordButton)
+
+
+        // Кнопка для восстановления пароля
+        forgotPasswordButton.setOnClickListener {
+            val email = emailField.text.toString()
+            if (email.isNotEmpty()) {
+                auth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Password reset email sent.", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Failed to send reset email: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            } else {
+                Toast.makeText(this, "Please enter your email.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // Логика входа
         loginButton.setOnClickListener {

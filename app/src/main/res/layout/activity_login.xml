@@ -72,6 +72,25 @@
         app:strokeColor="@color/blood"
         app:strokeWidth="2dp" />
 
+
+    <Button
+        android:id="@+id/forgotPasswordButton"
+        android:layout_width="175dp"
+        android:layout_height="61dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/blood"
+        android:textSize="15sp"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goToRegisterButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:rippleColor="@color/blood"
+        app:strokeColor="@color/blood"
+        app:strokeWidth="0dp" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="242dp"
