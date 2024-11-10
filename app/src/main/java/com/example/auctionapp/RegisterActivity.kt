@@ -46,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
                             val user = auth.currentUser
 
                             if (user != null) {
-                                val userId = user.uid
+                                val userId = user.email.toString()
                                 val userRef = database.getReference("users").child(userId)
                                 userRef.child("nickname").setValue(nickname)
                             }
