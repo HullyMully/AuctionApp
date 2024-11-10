@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "591677307106",
+    "firebase_url": "https://auctionapp-6aa2b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "auctionapp-6aa2b",
+    "storage_bucket": "auctionapp-6aa2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591677307106:android:86ad165d7e40cc86c9c6bb",
+        "android_client_info": {
+          "package_name": "com.example.auctionapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgkJwnfX3LLoUJOsEadEfliRopXQjm-Vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
