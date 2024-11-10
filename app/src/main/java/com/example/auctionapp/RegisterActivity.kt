@@ -39,7 +39,8 @@ class RegisterActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT)
+                                .show()
 
                             val nickname = generateNickname()
                             val user = auth.currentUser
@@ -58,15 +59,29 @@ class RegisterActivity : AppCompatActivity() {
                                         startActivity(intent)
                                         finish()
                                     } else {
-                                        Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                                        val exceptionMessage =
+                                            task.exception?.message ?: "Registration failed"
+                                        if (exceptionMessage.contains("The email address is already in use")) {
+                                            Toast.makeText(
+                                                this,
+                                                "This email is already in use. Please try another one.",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            Toast.makeText(
+                                                this,
+                                                "Registration failed: $exceptionMessage",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
                                     }
                                 }
                         } else {
-                            Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Please fill in both fields.", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
-            } else {
-                Toast.makeText(this, "Please fill in both fields.", Toast.LENGTH_SHORT).show()
+
             }
         }
 
