@@ -26,11 +26,7 @@ class ProfileActivity : AppCompatActivity() {
         Log.d("ProfileActivity", "onCreate called") // Проверка вызова метода
         enableEdgeToEdge()
         setContentView(R.layout.activity_profile)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         val auth = FirebaseAuth.getInstance()
         val database = Firebase.database
@@ -41,6 +37,13 @@ class ProfileActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.menu_main -> {
                     val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true
+
+                }
+                R.id.menu_add_product -> {
+                    // Переход на AddproductActivity
+                    val intent = Intent(this, AddProductActivity::class.java)
                     startActivity(intent)
                     true
                 }

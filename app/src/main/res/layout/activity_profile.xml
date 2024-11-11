@@ -6,10 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".MainActivity">
+    tools:context=".ProfileActivity">
+
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -17,6 +18,8 @@
         android:padding="16dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
+
+
 
         <ImageView
             android:id="@+id/profile_icon"

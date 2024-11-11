@@ -37,7 +37,9 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.com.cloudinary.cloudinary.android.v302.x2)
+    implementation(libs.cloudinary.android.download)
+    implementation(libs.cloudinary.android.preprocess)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -45,6 +47,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
+    implementation(libs.play.services.cast.tv)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
