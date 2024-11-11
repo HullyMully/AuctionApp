@@ -23,7 +23,10 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("ProfileActivity", "onCreate called") // Проверка вызова метода
+        enableEdgeToEdge()
         setContentView(R.layout.activity_profile)
+
 
         val auth = FirebaseAuth.getInstance()
         val database = Firebase.database
@@ -33,15 +36,18 @@ class ProfileActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_main -> {
-                    //Переходим на main
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     true
+
                 }
-                //Остаёмься тут
-                R.id.menu_profile -> {
+                R.id.menu_add_product -> {
+                    // Переход на AddproductActivity
+                    val intent = Intent(this, AddProductActivity::class.java)
+                    startActivity(intent)
                     true
                 }
+                R.id.menu_profile -> true
                 else -> false
             }
         }

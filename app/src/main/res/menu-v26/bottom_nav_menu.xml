@@ -8,6 +8,12 @@
         android:title="Main" />
 
     <item
+        android:id="@+id/menu_add_product"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:iconTint="@color/blood"
+        android:title="Add product" />
+
+    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_launcher_foreground"
         android:iconTint="@color/blood"

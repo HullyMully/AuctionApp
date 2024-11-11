@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
                     // Остаемся на MainActivity
                     true
                 }
+                R.id.menu_add_product -> {
+                    // Переход на AddproductActivity
+                    val intent = Intent(this, AddProductActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 R.id.menu_profile -> {
                     // Переход на ProfileActivity
                     val intent = Intent(this, ProfileActivity::class.java)
