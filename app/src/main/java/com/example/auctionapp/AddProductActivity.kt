@@ -68,10 +68,15 @@ class AddProductActivity : AppCompatActivity() {
             val price = productPriceEditText.text.toString().trim()
 
             if (name.isEmpty() || description.isEmpty() || price.isEmpty() || selectedImageUri == null) {
-                Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill in all fields and upload an image.", Toast.LENGTH_SHORT).show()
             } else {
                 uploadImageToCloudinary(name, description, price)
+
+                bottomNavigationView.selectedItemId = R.id.menu_main
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
+
         }
     }
 
@@ -96,7 +101,7 @@ class AddProductActivity : AppCompatActivity() {
                 // Сохранение товара в Firebase
                 saveProductToDatabase(name, description, price, imageUrl)
             }, { error ->
-                Toast.makeText(this, "Ошибка загрузки изображения: $error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error uploading image: $error", Toast.LENGTH_SHORT).show()
             })
         }
     }
@@ -112,11 +117,11 @@ class AddProductActivity : AppCompatActivity() {
 
         productsRef.child(productId).setValue(product)
             .addOnSuccessListener {
-                Toast.makeText(this, "Товар успешно добавлен!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Succesful!", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Ошибка при добавлении товара", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error saving product", Toast.LENGTH_SHORT).show()
             }
     }
 }

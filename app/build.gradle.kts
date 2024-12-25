@@ -37,6 +37,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.cardview)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
     implementation(libs.com.cloudinary.cloudinary.android.v302.x2)
     implementation(libs.cloudinary.android.download)
     implementation(libs.cloudinary.android.preprocess)

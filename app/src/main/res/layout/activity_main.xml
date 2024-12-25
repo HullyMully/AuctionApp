@@ -12,7 +12,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp"
         tools:layout_editor_absoluteX="0dp"
@@ -49,6 +49,17 @@
             app:rippleColor="@color/blood"
             app:strokeColor="@color/blood"
             app:strokeWidth="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

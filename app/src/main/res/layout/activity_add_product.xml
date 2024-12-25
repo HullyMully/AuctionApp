@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="@color/lightgray"
+        android:textColor="@color/white"
         android:hint="Name"
         android:minHeight="48dp" />
 
@@ -32,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="@color/lightgray"
+        android:textColor="@color/white"
         android:hint="Discription"
         android:minHeight="48dp" />
 
@@ -40,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="@color/lightgray"
-        android:hint="Price"
+        android:textColor="@color/white"
+        android:hint="Start price"
         android:inputType="numberDecimal"
         android:minHeight="48dp" />
 

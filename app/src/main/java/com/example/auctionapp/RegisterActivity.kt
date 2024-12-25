@@ -2,6 +2,7 @@ package com.example.auctionapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -49,6 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                                 val userId = user.uid
                                 val userRef = database.getReference("users").child(userId)
                                 userRef.child("nickname").setValue(nickname)
+                                userRef.child("isAdmin").setValue(false)
                             }
 
                             auth.signInWithEmailAndPassword(email, password)
@@ -77,8 +79,10 @@ class RegisterActivity : AppCompatActivity() {
                                     }
                                 }
                         } else {
-                            Toast.makeText(this, "The email address is already in use.", Toast.LENGTH_SHORT)
+                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT)
                                 .show()
+
+                            Log.d("ERROR", task.exception?.message.toString())
                         }
                     }
 

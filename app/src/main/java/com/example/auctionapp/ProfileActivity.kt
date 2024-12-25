@@ -2,8 +2,10 @@ package com.example.auctionapp
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -52,14 +54,13 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
-        // Найдем TextView для отображения ника и установим его текст
         val user = auth.currentUser
         if(user != null) {
             val userId = user.uid
             val nicknameRef = database.getReference("users").child(userId).child("nickname")
             nicknameRef.addValueEventListener(object : ValueEventListener {
-
                 override fun onDataChange(snapshot: DataSnapshot) {
+
                     val nickname = snapshot.getValue<String>()
                     val nicknameTextView = findViewById<TextView>(R.id.nicknameTextView)
                     nicknameTextView.text = "@$nickname"
@@ -69,14 +70,30 @@ class ProfileActivity : AppCompatActivity() {
                         val drawableRes = getAnimalDrawable(nickname)
                         profileImageView.setImageResource(drawableRes)
                     }
-                    Log.d(TAG, "NICKNAME IS : " + nickname)
+
+                    // Проверка на админа
+                    val isAdminRef = database.getReference("users").child(userId).child("isAdmin")
+                    isAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(adminSnapshot: DataSnapshot) {
+                            val isAdmin = adminSnapshot.getValue<Boolean>() ?: false
+                            if (isAdmin) {
+                                profileImageView.setColorFilter(Color.parseColor("#fcba03"))
+                                nicknameTextView.setTextColor(Color.parseColor("#fcba03"))
+
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.w(TAG, "Failed to check admin status.", error.toException())
+                        }
+                    })
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.w(TAG, "Failed to read value.", error.toException())
                 }
-
             })
+
 
         }
     }

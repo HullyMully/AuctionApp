@@ -5,5 +5,6 @@
     <color name="blood">#880808</color>
     <color name="gray">#1f1f1f</color>
     <color name="lightgray">#595959</color>
+    <color name="admin">#fcba03</color>
 
 </resources>
