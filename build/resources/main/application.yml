@@ -1,6 +1,8 @@
 spring:
+  application:
+    name: auction-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/auction_db
+    url: jdbc:postgresql://localhost:5432/auction
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -20,7 +22,7 @@ spring:
           jwk-set-uri: http://localhost:8080/realms/auction/protocol/openid-connect/certs
 
 keycloak:
-  auth-server-url: http://localhost:8080
+  auth-server-url: http://keycloak:8080
   realm: auction
   resource: auction-service
   public-client: true
@@ -34,8 +36,10 @@ server:
   port: 8081
 
 logging:
+  config: classpath:logback-spring.xml
   level:
     root: INFO
+    com.kutalev: DEBUG
     com.kutalev.auction: DEBUG
     org.springframework.security: INFO
     org.springframework.web: INFO
@@ -45,4 +49,17 @@ logging:
 
 jwt:
   secret: your-256-bit-secret-key-here-must-be-longer-than-256-bits
-  expiration: 86400000 # 24 hours in milliseconds 
+  expiration: 86400000 # 24 hours in milliseconds
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    enable:
+      process: false
+      system.cpu: false

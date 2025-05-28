@@ -1,0 +1,2 @@
+v23:00:42.601 [Test worker] INFO com.kutalev.auction.service.AuctionService -- Creating auction for user: test-user-id
+s23:00:42.653 [Test worker] INFO com.kutalev.auction.service.AuctionService -- Successfully saved auction with id: 

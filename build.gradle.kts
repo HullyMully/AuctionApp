@@ -39,11 +39,27 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
     
     runtimeOnly("org.postgresql:postgresql")
     implementation("io.github.microutils:kotlin-logging:3.0.5")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    
+    // Мониторинг
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
+    
+    // Логирование
+    //implementation("com.github.loki4j:loki-logback-appender:1.4.1")
+    //runtimeOnly("com.github.loki4j:loki-logback-appender:1.4.1")
+    
+    // Тестирование
+    testImplementation("org.testcontainers:testcontainers:1.19.3")
+    testImplementation("org.testcontainers:postgresql:1.19.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.3")
+    testImplementation("io.mockk:mockk:1.13.8")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
 
 tasks.withType<KotlinCompile> {
@@ -56,3 +72,7 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 } 
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

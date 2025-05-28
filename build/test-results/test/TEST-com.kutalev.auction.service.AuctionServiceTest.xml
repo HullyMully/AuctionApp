@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kutalev.auction.service.AuctionServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-05-28T17:00:40" hostname="MacBook-Air-David.local" time="1.849">
+  <properties/>
+  <testcase name="should create new auction()" classname="com.kutalev.auction.service.AuctionServiceTest" time="1.849"/>
+  <system-out><![CDATA[23:00:42.601 [Test worker] INFO com.kutalev.auction.service.AuctionService -- Creating auction for user: test-user-id
+23:00:42.653 [Test worker] INFO com.kutalev.auction.service.AuctionService -- Successfully saved auction with id: 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
