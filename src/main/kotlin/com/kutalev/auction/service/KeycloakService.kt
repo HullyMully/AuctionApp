@@ -1,38 +1,31 @@
 package com.kutalev.auction.service
 
+import com.kutalev.auction.config.KeycloakProperties
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.admin.client.KeycloakBuilder
 import org.keycloak.representations.idm.CredentialRepresentation
 import org.keycloak.representations.idm.UserRepresentation
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.ws.rs.core.Response
 
 @Service
-class KeycloakService {
-    @Value("\${keycloak.auth-server-url}")
-    private lateinit var authServerUrl: String
-
-    @Value("\${keycloak.realm}")
-    private lateinit var realm: String
-
-    @Value("\${keycloak.resource}")
-    private lateinit var clientId: String
-
+class KeycloakService(
+    private val keycloakProperties: KeycloakProperties
+) {
     private fun getKeycloakInstance(): Keycloak {
         return KeycloakBuilder.builder()
-            .serverUrl(authServerUrl)
-            .realm("master")
+            .serverUrl(keycloakProperties.authServerUrl)
+            .realm("master") // Мастер-Realm для администрирования
             .clientId("admin-cli")
-            .username("admin")  // Эти учетные данные должны быть настроены в Keycloak
-            .password("admin")  // и храниться в безопасном месте
+            .username(keycloakProperties.adminUsername)
+            .password(keycloakProperties.adminPassword)
             .build()
     }
 
     fun createUser(email: String, username: String, password: String, role: String): String {
         val keycloak = getKeycloakInstance()
-        val realmResource = keycloak.realm(realm)
+        val realmResource = keycloak.realm(keycloakProperties.realm)
         val usersResource = realmResource.users()
 
         // Создаем пользователя
@@ -69,9 +62,9 @@ class KeycloakService {
 
     fun deleteUser(keycloakId: String) {
         val keycloak = getKeycloakInstance()
-        val realmResource = keycloak.realm(realm)
+        val realmResource = keycloak.realm(keycloakProperties.realm)
         val response = realmResource.users().delete(keycloakId)
-        
+
         if (response.status != 204) {
             throw RuntimeException("Failed to delete user from Keycloak: ${response.statusInfo}")
         }
@@ -79,7 +72,7 @@ class KeycloakService {
 
     fun updateUser(keycloakId: String, email: String? = null, username: String? = null) {
         val keycloak = getKeycloakInstance()
-        val realmResource = keycloak.realm(realm)
+        val realmResource = keycloak.realm(keycloakProperties.realm)
         val userResource = realmResource.users().get(keycloakId)
         val user = userResource.toRepresentation()
 
@@ -87,5 +80,11 @@ class KeycloakService {
         username?.let { user.username = it }
 
         userResource.update(user)
+    }
+
+    fun listUsers(): List<UserRepresentation> {
+        val keycloak = getKeycloakInstance()
+        val realmResource = keycloak.realm(keycloakProperties.realm)
+        return realmResource.users().list()
     }
 } 

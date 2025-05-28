@@ -51,8 +51,7 @@ dependencies {
     implementation("io.micrometer:micrometer-registry-prometheus")
     
     // Логирование
-    //implementation("com.github.loki4j:loki-logback-appender:1.4.1")
-    //runtimeOnly("com.github.loki4j:loki-logback-appender:1.4.1")
+    implementation("com.github.loki4j:loki-logback-appender:1.4.1")
     
     // Тестирование
     testImplementation("org.testcontainers:testcontainers:1.19.3")
@@ -60,6 +59,7 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter:1.19.3")
     testImplementation("io.mockk:mockk:1.13.8")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 }
 
 tasks.withType<KotlinCompile> {

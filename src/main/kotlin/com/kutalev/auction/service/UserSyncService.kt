@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UserSyncService(
     private val userRepository: UserRepository,
-    private val keycloakAdminClient: Keycloak
+    private val keycloakAdminClient: Keycloak,
+    private val keycloakService: KeycloakService
 ) {
     @Transactional
     fun getOrCreateUserFromJwt(jwt: Jwt): User {
@@ -156,5 +157,17 @@ class UserSyncService(
         } else {
              println("UserSyncService: Пользователь с keycloakId: $keycloakId не найден в БД, удаление не требуется.")
         }
+    }
+
+    @Transactional
+    fun syncUsersFromKeycloak() {
+        println("UserSyncService: Начинаю синхронизацию пользователей из Keycloak")
+        val keycloakUsers = keycloakService.listUsers()
+        
+        println("UserSyncService: Получено ${keycloakUsers.size} пользователей из Keycloak")
+        keycloakUsers.forEach {
+            getOrCreateUserFromKeycloakUser(it)
+        }
+        println("UserSyncService: Синхронизация пользователей завершена")
     }
 } 

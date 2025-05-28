@@ -77,4 +77,11 @@ class AdminController(
         bidService.deleteBidByAdmin(bidId)
         return ResponseEntity.ok().build()
     }
+
+    @PostMapping("/sync-users")
+    @PreAuthorize("hasRole('ADMIN')")
+    fun syncUsers(): ResponseEntity<String> {
+        userSyncService.syncUsersFromKeycloak()
+        return ResponseEntity.ok("User synchronization initiated.")
+    }
 } 

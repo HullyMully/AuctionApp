@@ -1,43 +1,32 @@
 package com.kutalev.auction.listener
 
+import com.kutalev.auction.service.KeycloakService
 import com.kutalev.auction.service.UserSyncService
-import org.keycloak.admin.client.Keycloak
-import org.springframework.beans.factory.annotation.Value
+import org.slf4j.LoggerFactory
+import org.springframework.context.ApplicationListener
 import org.springframework.context.event.ContextRefreshedEvent
-import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 @Component
 class UserSyncStartupListener(
-    private val keycloakAdminClient: Keycloak,
-    private val userSyncService: UserSyncService,
-    @Value("\${keycloak.realm}")
-    private val realm: String
-) {
+    private val keycloakService: KeycloakService,
+    private val userSyncService: UserSyncService
+) : ApplicationListener<ContextRefreshedEvent> {
 
-    @EventListener
-    fun onApplicationEvent(event: ContextRefreshedEvent) {
+    private val logger = LoggerFactory.getLogger(javaClass)
+
+    override fun onApplicationEvent(event: ContextRefreshedEvent) {
         logger.info("Начало синхронизации пользователей из Keycloak при запуске")
-        try {
-            val users = keycloakAdminClient.realm(realm).users().list()
-            logger.info("Получено ${users.size} пользователей из Keycloak")
-
-            users.forEach { userRepresentation ->
-                try {
-                    // Здесь мы используем getOrCreateUserFromJwt, но нам нужен метод для синхронизации
-                    // без JWT. Создадим новый метод в UserSyncService.
-                    val user = userSyncService.getOrCreateUserFromKeycloakUser(userRepresentation)
-                    logger.debug("Синхронизирован пользователь: ${user.userId} - ${user.name}")
-                } catch (e: Exception) {
-                    logger.error("Ошибка при синхронизации пользователя ${userRepresentation.username}", e)
-                }
+        runBlocking {
+            try {
+                // Ждем 30 секунд, пока Keycloak полностью запустится
+                delay(30000)
+                userSyncService.syncUsersFromKeycloak()
+            } catch (e: Exception) {
+                logger.error("Ошибка при получении пользователей из Keycloak", e)
             }
-            logger.info("Завершение синхронизации пользователей из Keycloak при запуске")
-        } catch (e: Exception) {
-            logger.error("Ошибка при получении пользователей из Keycloak", e)
         }
     }
 } 

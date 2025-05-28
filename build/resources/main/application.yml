@@ -2,7 +2,7 @@ spring:
   application:
     name: auction-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/auction
+    url: jdbc:postgresql://localhost:5432/auction_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
