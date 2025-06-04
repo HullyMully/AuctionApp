@@ -45,6 +45,11 @@ jobs:
     - name: Exclude Android module from settings.gradle.kts
       run: sed -i '/include(":app")/d' settings.gradle.kts # Временно удаляем строку include(":app")
 
+    - name: Check prometheus.yml file
+      run: |
+        ls -la prometheus.yml
+        file prometheus.yml
+
     - name: Build with Gradle
       run: ./gradlew :build # Собираем только корневой проект
       
