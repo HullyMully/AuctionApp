@@ -42,8 +42,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
+    - name: Exclude Android module from settings.gradle.kts
+      run: sed -i '/include(":app")/d' settings.gradle.kts # Временно удаляем строку include(":app")
+
     - name: Build with Gradle
-      run: ./gradlew :build
+      run: ./gradlew :build # Собираем только корневой проект
       
     - name: Run tests
       run: ./gradlew :test
