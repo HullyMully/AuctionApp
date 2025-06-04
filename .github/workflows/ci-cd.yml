@@ -52,7 +52,9 @@ jobs:
       run: ./gradlew :test
 
     - name: Start Docker Compose services
-      run: docker-compose up --build -d
+      run: |
+        docker-compose down --volumes --remove-orphans || true # Добавляем очистку перед запуском, || true предотвращает ошибку, если нет запущенных контейнеров
+        docker-compose up --build -d
 
     - name: Wait for services to be healthy
       timeout-minutes: 5
