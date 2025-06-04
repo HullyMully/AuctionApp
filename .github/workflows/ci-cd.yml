@@ -42,7 +42,44 @@ jobs:
       
     - name: Run tests
       run: ./gradlew test
-      
+
+    - name: Start Docker Compose services
+      run: docker-compose up --build -d
+
+    - name: Wait for services to be healthy
+      timeout-minutes: 5
+      run: |
+        echo "Waiting for app service on port 8081..."
+        for i in $(seq 1 60); do
+          curl -s http://localhost:8081/actuator/health > /dev/null && break
+          echo "Waiting... $i"
+          sleep 5
+        done
+        echo "App service is up."
+        
+        echo "Waiting for Keycloak service on port 8080..."
+        for i in $(seq 1 60); do
+          curl -s http://localhost:8080/realms/auction > /dev/null && break
+          echo "Waiting... $i"
+          sleep 5
+        done
+        echo "Keycloak service is up."
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # Используйте актуальную версию Node.js
+
+    - name: Install Newman
+      run: npm install -g newman
+
+    - name: Run Postman tests
+      run: newman run api-tests/collection.postman_collection.json
+
+    - name: Stop Docker Compose services
+      if: always()
+      run: docker-compose down
+
     - name: Build Docker image
       run: docker build -t kutalev-auction:${{ github.sha }} .
       
