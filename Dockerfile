@@ -1,8 +1,7 @@
 FROM gradle:8.7-jdk17 AS build
 WORKDIR /app
 COPY . .
-WORKDIR /app/app
-RUN gradle bootJar --no-daemon
+RUN ./gradlew :app:bootJar --no-daemon
 
 FROM openjdk:17-slim
 WORKDIR /app
