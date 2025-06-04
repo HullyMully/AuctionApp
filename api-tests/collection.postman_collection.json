@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "ae1bcfad-2e97-493d-b7e1-b279ba76f401",
+		"name": "Export collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43250606"
+	},
+	"item": [
+		{
+			"name": "Delete user Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "User-Id",
+						"value": "3408e87e-5640-4e20-a70a-99514d7d1026",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/admin/users/181b281a-ec53-463d-be3f-bf198f31502d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"admin",
+						"users",
+						"181b281a-ec53-463d-be3f-bf198f31502d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete auction Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "User-Id",
+						"value": "3408e87e-5640-4e20-a70a-99514d7d1026",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/admin/auctions/04df102d-3a10-4b3d-9d79-c675e7e9acee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"admin",
+						"auctions",
+						"04df102d-3a10-4b3d-9d79-c675e7e9acee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete bid Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "User-Id",
+						"value": "3408e87e-5640-4e20-a70a-99514d7d1026",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/admin/bids/cd660a76-e5e9-46ea-a075-502c2cf96923",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"admin",
+						"bids",
+						"cd660a76-e5e9-46ea-a075-502c2cf96923"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View bids Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Id",
+						"value": "b32cefa1-982e-4ce3-9f76-77a42373c2fd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/admin/bids",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"admin",
+						"bids"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change auction status Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "auction-service",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "alex",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "user123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/admin/auctions/{auctionId}/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"admin",
+						"auctions",
+						"{auctionId}",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "auction-service",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "xela",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "user123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/realms/auction/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"auction",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View auctions Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/auctions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auctions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View users Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create aucton Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJOSFFSNWhndzN5TXVIVW4zcFFBTTVGZERmdnJzS3ZKNzUtNE83TEwzOWE0In0.eyJleHAiOjE3NDcyNDA2MTIsImlhdCI6MTc0NzI0MDMxMiwianRpIjoiMTdiN2JkMWMtZGIzMi00NDA2LWI5ZWEtMDJiNDA5YTU5MzAzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9hdWN0aW9uIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImJlMmZiNTY4LTk1ZDctNDI3Ni1hNWQzLTgwMDU3NDc4ZjFhNSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImF1Y3Rpb24tc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI4MGQ3MjJiYi02NDllLTRlOTMtODExYi0yYWFhNmM2OTI0MTEiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYXVjdGlvbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiODBkNzIyYmItNjQ5ZS00ZTkzLTgxMWItMmFhYTZjNjkyNDExIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbGV4In0.ZK8fBKUf50OVMAKqhLFbq3kJkFBAWs8lCohZ2JJVygyhvsrn15Y_gFvgtYnESM7Ry5WqFiFD1CXeNfpdaolTdiA-CWLGFctRF5kN1AbqnlRGMvKNXwlMGkosNcXuqU6gw4EW5h0H0_y9MtWU20muL7IPsZoercpTmbeC-FOTG-5jXFVxZu4sYQyhJCHIoAOUN1ZlwzNnUJt5GQ-PClHbaVn30Tl0t6ssLr2qUFuLXkPSEJgJM8OQYSa5OLn2c1ygH_-fDoc9QjsbxXlVkV7x5C6UEDlitp48vtSr5ZG828ylr6HHsAeQcrWEPleFI0mXt6a-_YVZoVbRjK_tlLSCcQ",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n      \"title\": \"mac book pro max 1920\",\n      \"description\": \"laptop top laptop\",\n      \"startPrice\": 283000,\n      \"startTime\": \"2025-05-15T13:28:30\",\n      \"endTime\": \"2025-05-28T12:00:00\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/auctions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auctions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set bid Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Id",
+						"value": "3408e87e-5640-4e20-a70a-99514d7d1026",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 92000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/bids/auctions/fd9fc8d1-510f-4f44-8547-948c2f787d48",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"bids",
+						"auctions",
+						"fd9fc8d1-510f-4f44-8547-948c2f787d48"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete bid Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "User-Id",
+						"value": "bf3c7756-d6a7-4137-94e4-14245f100532",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/bids/f036c573-8040-4ca4-8ad6-0e2911c1a0fe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"bids",
+						"f036c573-8040-4ca4-8ad6-0e2911c1a0fe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete auction Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "User-Id",
+						"value": "b32cefa1-982e-4ce3-9f76-77a42373c2fd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/auctions/33288ae0-aa4b-48a3-b27d-4f2b0f76a1f9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auctions",
+						"33288ae0-aa4b-48a3-b27d-4f2b0f76a1f9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
