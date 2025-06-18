@@ -1,0 +1,76 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Application Logs",
+    "tags": ["logs", "loki"],
+    "style": "dark",
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Application Logs",
+        "type": "logs",
+        "targets": [
+          {
+            "expr": "{app=\"auction-service\"}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 20, "w": 24, "x": 0, "y": 0},
+        "options": {
+          "showTime": true,
+          "showLabels": true,
+          "showCommonLabels": false,
+          "wrapLogMessage": true,
+          "prettifyLogMessage": false,
+          "enableLogDetails": true
+        }
+      },
+      {
+        "id": 2,
+        "title": "Error Logs",
+        "type": "logs",
+        "targets": [
+          {
+            "expr": "{app=\"auction-service\", level=\"ERROR\"}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 10, "w": 12, "x": 0, "y": 20},
+        "options": {
+          "showTime": true,
+          "showLabels": true,
+          "showCommonLabels": false,
+          "wrapLogMessage": true,
+          "prettifyLogMessage": false,
+          "enableLogDetails": true
+        }
+      },
+      {
+        "id": 3,
+        "title": "Debug Logs",
+        "type": "logs",
+        "targets": [
+          {
+            "expr": "{app=\"auction-service\", level=\"DEBUG\"}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 10, "w": 12, "x": 12, "y": 20},
+        "options": {
+          "showTime": true,
+          "showLabels": true,
+          "showCommonLabels": false,
+          "wrapLogMessage": true,
+          "prettifyLogMessage": false,
+          "enableLogDetails": true
+        }
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "refresh": "10s"
+  }
+} 
