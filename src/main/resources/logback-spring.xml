@@ -4,19 +4,19 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
     <!-- Loki Appender -->
-    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
-        <http>
-            <url>http://loki:3100/loki/api/v1/push</url>
-        </http>
-        <format class="com.github.loki4j.logback.JsonEncoder">
-            <label>
-                <pattern>app=auction-service,host=${HOSTNAME},level=%level</pattern>
-            </label>
-            <message>
-                <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
-            </message>
-        </format>
-    </appender>
+   <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+    <http>
+        <url>http://loki:3100/loki/api/v1/push</url>
+    </http>
+    <format class="com.github.loki4j.logback.JsonEncoder">
+        <label>
+            <pattern>app=auction-service,host=${HOSTNAME},level=%level</pattern>
+        </label>
+        <message>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </message>
+    </format>
+</appender>
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

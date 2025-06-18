@@ -17,6 +17,19 @@ import org.springframework.security.oauth2.jwt.Jwt
 @Configuration
 @EnableMethodSecurity
 class SecurityConfig {
+        @Bean
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+        http
+            .authorizeHttpRequests { authz ->
+                authz
+                    .requestMatchers("/actuator/prometheus").permitAll()
+                    .requestMatchers("/api/images/**").permitAll() // <--- добавьте это!
+                    .anyRequest().authenticated()
+            }
+            .csrf { it.disable() }
+        return http.build()
+    }
+
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
@@ -32,7 +45,8 @@ class SecurityConfig {
                         "/api/users",
                         "/api/users/**",
                         "/api/auctions/**",
-                        "/api/auctions"
+                        "/api/auctions",
+                        "/actuator/prometheus"
                     ).permitAll()
                     .requestMatchers("/api/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated()

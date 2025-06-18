@@ -87,6 +87,7 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - monitoring
+    user: "0:0"
 
   keycloak:
     image: quay.io/keycloak/keycloak:22.0.5
@@ -98,13 +99,28 @@ services:
     command: start-dev
     networks:
       - monitoring
-      
+
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - monitoring
+
 volumes:
   postgres_data:
   grafana_data:
   prometheus_data:
   loki_data:
   alertmanager_data:
+  minio_data:
 
 networks:
   monitoring:
