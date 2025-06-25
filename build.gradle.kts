@@ -103,7 +103,6 @@ tasks.jacocoTestCoverageVerification {
     }
 }
 
-// Integration tests configuration
 val integrationTest by sourceSets.creating {
     compileClasspath += sourceSets.main.get().output
     runtimeClasspath += sourceSets.main.get().output

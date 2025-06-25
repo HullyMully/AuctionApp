@@ -63,6 +63,18 @@ jobs:
     - name: Generate test report
       run: ./gradlew jacocoTestReport
       
+    - name: Verify coverage (fail if < 70%)
+      run: ./gradlew jacocoTestCoverageVerification
+
+    - name: Show coverage summary
+      run: |
+        if [ -f build/reports/jacoco/test/html/index.html ]; then
+          echo "Coverage report generated: build/reports/jacoco/test/html/index.html"
+        fi
+        if [ -f build/reports/jacoco/test/jacocoTestReport.xml ]; then
+          grep -o 'line-rate="[0-9.]*"' build/reports/jacoco/test/jacocoTestReport.xml | head -1
+        fi
+
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
