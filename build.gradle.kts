@@ -137,7 +137,7 @@ koverReport {
         rule("Minimal line coverage") {
             bound {
                 minValue = 70
-                metric = MetricType.LINE
+                metric = "LINE"
             }
         }
     }
