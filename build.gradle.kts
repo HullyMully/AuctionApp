@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import kotlinx.kover.api.MetricType
 
 plugins {
     id("org.springframework.boot") version "3.2.3"
@@ -136,7 +137,7 @@ koverReport {
         rule("Minimal line coverage") {
             bound {
                 minValue = 70
-                metric = "LINE"
+                metric = MetricType.LINE
             }
         }
     }
