@@ -7,6 +7,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
     kotlin("plugin.jpa") version "1.9.22"
     id("jacoco")
+    id("org.jetbrains.kotlinx.kover") version "0.7.4"
 }
 
 group = "com.kutalev"
@@ -72,7 +73,7 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport)
-} 
+}
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -132,3 +133,10 @@ tasks.register<Test>("integrationTest") {
 }
 
 tasks.check { dependsOn("integrationTest") }
+
+tasks.koverXmlReport {
+    isEnabled = true
+}
+tasks.koverHtmlReport {
+    isEnabled = true
+}

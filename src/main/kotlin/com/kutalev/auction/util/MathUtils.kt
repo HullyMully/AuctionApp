@@ -1,6 +1,11 @@
 package com.kutalev.auction.util
 
-object MathUtils {
-    fun add(a: Int, b: Int): Int = a + b
-    fun multiply(a: Int, b: Int): Int = a * b
-} 
+class MathUtils {
+    companion object {
+        @JvmStatic
+        fun add(a: Int, b: Int): Int = a + b
+
+        @JvmStatic
+        fun multiply(a: Int, b: Int): Int = a * b
+    }
+}
