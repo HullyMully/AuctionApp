@@ -133,12 +133,10 @@ tasks.koverHtmlReport {
 
 koverReport {
     verify {
-        onCheck = true
-        rule {
-            name = "Minimal line coverage"
+        rule("Minimal line coverage") {
             bound {
                 minValue = 70
-                metric = kotlinx.kover.api.VerificationBoundMetric.LINE
+                metric = "LINE"
             }
         }
     }
