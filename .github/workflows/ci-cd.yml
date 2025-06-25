@@ -60,19 +60,19 @@ jobs:
     - name: Run integration tests
       run: ./gradlew integrationTest
       
-    - name: Generate test report
-      run: ./gradlew jacocoTestReport
-      
-    - name: Verify coverage (fail if < 70%)
-      run: ./gradlew jacocoTestCoverageVerification
+    - name: Generate Kover coverage report
+      run: ./gradlew koverHtmlReport koverXmlReport
 
-    - name: Show coverage summary
+    - name: Verify Kover coverage (fail if < 70%)
+      run: ./gradlew koverVerify
+
+    - name: Show Kover coverage summary
       run: |
-        if [ -f build/reports/jacoco/test/html/index.html ]; then
-          echo "Coverage report generated: build/reports/jacoco/test/html/index.html"
+        if [ -f build/reports/kover/html/index.html ]; then
+          echo "Kover coverage report generated: build/reports/kover/html/index.html"
         fi
-        if [ -f build/reports/jacoco/test/jacocoTestReport.xml ]; then
-          grep -o 'line-rate="[0-9.]*"' build/reports/jacoco/test/jacocoTestReport.xml | head -1
+        if [ -f build/reports/kover/xml/report.xml ]; then
+          grep -o 'line-rate="[0-9.]*"' build/reports/kover/xml/report.xml | head -1 || true
         fi
 
     - name: Upload test results
@@ -87,7 +87,7 @@ jobs:
       if: always()
       with:
         name: coverage-report
-        path: build/reports/jacoco/
+        path: build/reports/kover/
 
   integration-tests:
     runs-on: ubuntu-latest

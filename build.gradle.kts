@@ -94,16 +94,6 @@ tasks.jacocoTestReport {
     dependsOn(tasks.test)
 }
 
-tasks.jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = "0.7".toBigDecimal()
-            }
-        }
-    }
-}
-
 val integrationTest by sourceSets.creating {
     compileClasspath += sourceSets.main.get().output
     runtimeClasspath += sourceSets.main.get().output
@@ -139,4 +129,15 @@ tasks.koverXmlReport {
 }
 tasks.koverHtmlReport {
     isEnabled = true
+}
+
+kover {
+    verify {
+        rule {
+            bound {
+                minValue = 70
+                metric = "INSTRUCTION"
+            }
+        }
+    }
 }
