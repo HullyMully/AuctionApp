@@ -7,7 +7,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
     kotlin("plugin.jpa") version "1.9.22"
     id("jacoco")
-    id("org.jetbrains.kotlinx.kover") version "0.7.4"
+    id("org.jetbrains.kotlinx.kover") version "0.8.0"
 }
 
 group = "com.kutalev"
@@ -136,6 +136,7 @@ koverReport {
         rule("Minimal line coverage") {
             bound {
                 minValue = 70
+                metric = "LINE"
             }
         }
     }
