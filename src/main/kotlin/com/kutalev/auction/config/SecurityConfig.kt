@@ -23,7 +23,8 @@ class SecurityConfig {
             .authorizeHttpRequests { authz ->
                 authz
                     .requestMatchers("/actuator/prometheus").permitAll()
-                    .requestMatchers("/api/images/**").permitAll() // <--- добавьте это!
+                    .requestMatchers("/api/images/**").permitAll() 
+                    .requestMatchers("/api/log-test").permitAll()
                     .anyRequest().authenticated()
             }
             .csrf { it.disable() }

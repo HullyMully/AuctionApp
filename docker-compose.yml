@@ -6,6 +6,7 @@ services:
     ports:
       - "8081:8081"
     environment:
+      - TZ=Asia/Almaty
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/auction
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
