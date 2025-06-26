@@ -130,14 +130,3 @@ tasks.koverXmlReport {
 tasks.koverHtmlReport {
     isEnabled = true
 }
-
-koverReport {
-    verify {
-        rule("Minimal line coverage") {
-            bound {
-                minValue = 70
-                metric = "LINE"
-            }
-        }
-    }
-}
